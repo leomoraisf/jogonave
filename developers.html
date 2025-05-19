@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galaxy Guardian – Desenvolvedores</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset Básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #000010; /* Azul escuro espacial */
+      color: #e0e0e0; /* Cinza claro para texto */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden; /* Prevenir scroll horizontal */
+      overflow-y: auto; /* Permitir scroll vertical */
+      position: relative;
+      text-align: center;
+    }
+
+    /* Fundo de Estrelas Animado */
+    .stars, .stars2, .stars3 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      background-repeat: repeat;
+      background-position: 0 0;
+      z-index: -1;
+    }
+
+    .stars {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="5" height="5"><circle fill="%23FFF" cx="1" cy="1" r="0.5"/></svg>');
+      background-size: 50px 50px;
+      animation: animStar 50s linear infinite;
+    }
+
+    .stars2 {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="5" height="5"><circle fill="%23DDD" cx="2" cy="3" r="0.4"/></svg>');
+      background-size: 100px 100px;
+      animation: animStar 100s linear infinite;
+    }
+
+    .stars3 {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="5" height="5"><circle fill="%23BBB" cx="4" cy="1" r="0.3"/></svg>');
+      background-size: 150px 150px;
+      animation: animStar 150s linear infinite;
+    }
+
+    @keyframes animStar {
+      from { background-position: 0 0; }
+      to { background-position: -10000px 5000px; }
+    }
+
+    /* Estilização da Barra de Navegação */
+    nav {
+      background-color: rgba(10, 20, 40, 0.85);
+      padding: 15px 0;
+      width: 100%;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 120, 255, 0.3);
+    }
+
+    nav a {
+      font-family: 'Roboto', sans-serif;
+      color: #00d1ff;
+      margin: 0 20px;
+      text-decoration: none;
+      font-size: 1.1em;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
+
+    nav a:hover, nav a.active {
+      color: #ffffff;
+      background-color: rgba(0, 120, 255, 0.5);
+      text-shadow: 0 0 8px #00d1ff;
+    }
+
+    /* Área de Conteúdo Principal */
+    main {
+      padding: 100px 20px 40px 20px; /* Padding superior aumentado para nav */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-grow: 1;
+      z-index: 1;
+      width: 100%;
+    }
+
+    /* Título da Página de Desenvolvedores */
+    h1 {
+      font-family: 'Press Start 2P', cursive;
+      color: #00eaff;
+      font-size: 2.5em; /* Um pouco menor que o título principal do jogo */
+      margin-bottom: 40px;
+      text-shadow:
+        0 0 5px #00eaff,
+        0 0 10px #00eaff;
+    }
+
+    /* Lista de Desenvolvedores */
+    .developer-list {
+      list-style: none;
+      padding: 0;
+      max-width: 700px;
+      width: 90%;
+    }
+
+    .developer-item {
+      background-color: rgba(20, 30, 50, 0.7); /* Fundo do card */
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(0, 150, 255, 0.4);
+      border-radius: 10px;
+      padding: 20px 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      text-align: left; /* Alinhar texto à esquerda dentro do card */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .developer-item:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(0, 120, 255, 0.3);
+    }
+
+    .developer-item strong {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700; /* Negrito mais forte */
+      color: #99ddff; /* Azul claro para o nome */
+      font-size: 1.3em;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .developer-item span {
+      display: block; /* Cada informação em uma nova linha */
+      color: #c0d0e0; /* Cor mais suave para RA e email */
+      font-size: 1em;
+      margin-bottom: 5px;
+      word-break: break-all; /* Quebrar emails longos se necessário */
+    }
+     .developer-item span .label {
+        font-weight: bold;
+        color: #77aaff; /* Cor para os rótulos RA e Email */
+     }
+
+
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="developers.html" class="active">Desenvolvedores</a> <a href="game.html">Jogar</a>
+  </nav>
+
+  <main>
+    <h1>Equipe de Desenvolvimento</h1>
+    <ul class="developer-list">
+      <li class="developer-item">
+        <strong>Fulano de Tal</strong>
+        <span><span class="label">RA:</span> 123456</span>
+        <span><span class="label">Email:</span> lugardoemail</span>
+      </li>
+      <li class="developer-item">
+        <strong>Sicrano da Silva</strong>
+        <span><span class="label">RA:</span> 654321</span>
+        <span><span class="label">Email:</span> lugardoemail</span>
+      </li>
+      </ul>
+  </main>
+
+</body>
+</html>
