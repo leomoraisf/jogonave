@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galaxy Guardian – Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset Básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #000010; 
+      color: #e0e0e0; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; 
+      min-height: 100vh;
+      overflow-x: hidden; 
+      overflow-y: auto; 
+      position: relative; 
+      text-align: center;
+    }
+
+    /* Fundo de Estrelas Animado */
+    .stars, .stars2, .stars3 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      background-repeat: repeat;
+      background-position: 0 0;
+      z-index: -1; 
+    }
+
+    .stars {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="5" height="5"><circle fill="%23FFF" cx="1" cy="1" r="0.5"/></svg>');
+      background-size: 50px 50px;
+      animation: animStar 50s linear infinite;
+    }
+
+    .stars2 {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="5" height="5"><circle fill="%23DDD" cx="2" cy="3" r="0.4"/></svg>');
+      background-size: 100px 100px;
+      animation: animStar 100s linear infinite;
+    }
+
+    .stars3 {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="5" height="5"><circle fill="%23BBB" cx="4" cy="1" r="0.3"/></svg>');
+      background-size: 150px 150px;
+      animation: animStar 150s linear infinite;
+    }
+
+    @keyframes animStar {
+      from { background-position: 0 0; }
+      to { background-position: -10000px 5000px; } 
+    }
+
+
+    /* Estilização da Barra de Navegação */
+    nav {
+      background-color: rgba(10, 20, 40, 0.85); 
+      padding: 15px 0;
+      width: 100%;
+      text-align: center;
+      position: fixed; 
+      top: 0;
+      left: 0;
+      z-index: 1000; 
+      box-shadow: 0 2px 10px rgba(0, 120, 255, 0.3);
+    }
+
+    nav a {
+      font-family: 'Roboto', sans-serif;
+      color: #00d1ff; 
+      margin: 0 20px;
+      text-decoration: none;
+      font-size: 1.1em; 
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
+
+    nav a:hover, nav a.active {
+      color: #ffffff;
+      background-color: rgba(0, 120, 255, 0.5); 
+      text-shadow: 0 0 8px #00d1ff;
+    }
+
+    /* Área de Conteúdo Principal */
+    main {
+      padding: 80px 20px 40px 20px; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1; 
+      z-index: 1; 
+      width: 100%; 
+    }
+
+    /* Estilização do Título do Jogo */
+    h1 {
+      font-family: 'Press Start 2P', cursive; 
+      color: #00eaff; 
+      font-size: 2.8em; 
+      margin-bottom: 25px;
+      text-shadow: 
+        0 0 5px #00eaff,
+        0 0 10px #00eaff,
+        0 0 15px #0077ff,
+        0 0 20px #0077ff;
+      animation: pulseTitle 2s infinite alternate;
+    }
+    
+    @keyframes pulseTitle {
+        from { opacity: 0.8; transform: scale(1); }
+        to { opacity: 1; transform: scale(1.03); }
+    }
+    
+    /* Estilização da caixa de missão e instruções */
+    .info-box { 
+      background-color: rgba(20, 30, 50, 0.65); 
+      backdrop-filter: blur(10px); 
+      -webkit-backdrop-filter: blur(10px); 
+      padding: 25px 35px;
+      border-radius: 12px;
+      margin-top: 10px; 
+      margin-bottom: 30px;
+      max-width: 600px; 
+      width: 90%; 
+      border: 1px solid rgba(0, 150, 255, 0.4); 
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .info-box p {
+        font-size: 1.1em; 
+        color: #eff7ff; 
+        line-height: 1.7;
+        margin-bottom: 12px; 
+        text-shadow: 0 0 3px rgba(0, 200, 255, 0.5); 
+    }
+    
+    .info-box p.mission-text-title { 
+        font-weight: bold;
+        font-size: 1.2em;
+        color: #99ddff; 
+        margin-bottom: 8px;
+    }
+
+    .info-box p:last-child {
+        margin-bottom: 0;
+    }
+
+
+    /* Estilização do Botão de Jogar */
+    .play-button {
+      font-family: 'Press Start 2P', cursive;
+      padding: 18px 35px;
+      font-size: 1.3em;
+      color: #ffffff;
+      background: linear-gradient(145deg, #007bff, #0056b3); 
+      border: none;
+      border-radius: 8px; 
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 120, 255, 0.4);
+      letter-spacing: 1px;
+      margin-bottom: 40px; 
+    }
+
+    .play-button:hover {
+      background: linear-gradient(145deg, #0056b3, #003d80);
+      transform: translateY(-3px) scale(1.05); 
+      box-shadow: 0 8px 20px rgba(0, 150, 255, 0.6);
+    }
+    .play-button:active {
+        transform: translateY(0px) scale(1);
+        box-shadow: 0 5px 15px rgba(0, 120, 255, 0.4);
+    }
+
+    /* Caixa de Créditos dos Assets */
+    .credits-box {
+      background-color: rgba(10, 15, 25, 0.7); 
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      padding: 15px 25px;
+      border-radius: 8px;
+      margin-top: 20px; 
+      max-width: 700px; 
+      width: 90%; 
+      border: 1px solid rgba(0, 100, 200, 0.3);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      font-size: 0.9em;
+      color: #a0b0c0; 
+    }
+
+    .credits-box p {
+        line-height: 1.6;
+        margin-bottom: 5px;
+    }
+    .credits-box p:last-child {
+        margin-bottom: 0;
+    }
+    .credits-box a {
+        color: #66aaff; 
+        text-decoration: none;
+    }
+    .credits-box a:hover {
+        text-decoration: underline;
+    }
+    /* Controle de áudio */
+    #audioControl {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        background-color: rgba(0,0,0,0.5);
+        color: white;
+        border: 1px solid #00d1ff;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 1001;
+        font-family: 'Roboto', sans-serif;
+    }
+    #audioControl:hover {
+        background-color: rgba(0, 120, 255, 0.7);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <nav>
+    <a href="index.html" class="active">Home</a> 
+    <a href="developers.html">Desenvolvedores</a>
+    <a href="game.html">Jogar</a>
+  </nav>
+
+  <main>
+    <h1>Galaxy Guardian</h1>
+    
+    <div class="info-box"> 
+      <p class="mission-text-title">Sua Missão:</p>
+      <p>Sobreviver ao máximo de ondas de asteroides que puder e acumular uma pontuação épica!</p>
+      <hr style="border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 150, 255, 0), rgba(0, 150, 255, 0.75), rgba(0, 150, 255, 0)); margin: 15px 0;">
+      <p>Use as Setas ou W,A,S,D para mover sua nave.</p>
+      <p>Barra de Espaço para atirar.</p>
+      <p>P ou ESC para pausar o jogo.</p>
+    </div>
+
+    <a href="game.html" class="play-button">Ir para o Jogo</a>
+
+    <div class="credits-box">
+      <p>Assets de imagens e sons utilizados neste jogo foram obtidos em <a href="https://chimplement.itch.io/" target="_blank" rel="noopener noreferrer">chimplement.itch.io</a>.</p>
+      <p>Agradecimentos aos criadores por disponibilizarem esses recursos.</p>
+    </div>
+  </main>
+
+  <audio id="backgroundSoundtrack" loop>
+    <source src="assets/sounds/music/soundtrack.mp3" type="audio/mpeg">
+    Seu navegador não suporta o elemento de áudio.
+  </audio>
+
+  <button id="audioControl">🔊 Música ON</button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const soundtrack = document.getElementById('backgroundSoundtrack');
+      const audioControlButton = document.getElementById('audioControl');
+      let isMusicPlaying = false;
+
+      // Tenta tocar a música após uma interação do usuário ou automaticamente se permitido
+      function attemptPlayMusic() {
+        if (soundtrack.paused && !isMusicPlaying) {
+          soundtrack.play().then(() => {
+            isMusicPlaying = true;
+            audioControlButton.textContent = '🔇 Música OFF';
+          }).catch(error => {
+            // Autoplay foi bloqueado, espera por interação do usuário
+            console.warn("Autoplay da música bloqueado, aguardando interação do usuário.", error);
+            audioControlButton.textContent = '🔊 Música ON (Clique)';
+            // Adiciona um listener para o primeiro clique em qualquer lugar para iniciar a música
+            // Removido para usar apenas o botão de controle
+          });
+        }
+      }
+
+      // Tenta tocar a música assim que a página carregar (pode ser bloqueado pelo navegador)
+      // Em vez disso, vamos esperar que o usuário clique no botão de controle ou inicie a música via JS.
+      // attemptPlayMusic(); // Removido para dar controle explícito ao usuário
+
+      audioControlButton.addEventListener('click', () => {
+        if (soundtrack.paused) {
+          soundtrack.play().then(() => {
+            isMusicPlaying = true;
+            audioControlButton.textContent = '🔇 Música OFF';
+          }).catch(error => console.error("Erro ao tocar música:", error));
+        } else {
+          soundtrack.pause();
+          isMusicPlaying = false;
+          audioControlButton.textContent = '🔊 Música ON';
+        }
+      });
+
+      // Opcional: Pausar música se a aba ficar inativa
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden && isMusicPlaying) {
+          soundtrack.pause();
+          // Não muda o texto do botão aqui, pois o usuário não interagiu para pausar
+        } else if (!document.hidden && isMusicPlaying && audioControlButton.textContent === '🔇 Música OFF') {
+          // Se a música estava tocando e o botão indica OFF, tenta retomar
+          // Isso pode ser problemático se o usuário pausou intencionalmente e mudou de aba
+          // Melhor deixar o usuário retomar explicitamente
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
